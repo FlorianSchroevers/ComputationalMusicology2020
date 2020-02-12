@@ -30,17 +30,17 @@ First we need...
 <summary>See code</summary>
 <p>
 
-```python
+{% highlight python %}
 ### imports
 import matplotlib.pyplot as plt
 from matplotlib import colors as mcolors
 import seaborn as sns
 
 from helpers import *
-```
+{% endhighlight %}
 
 
-```python
+{% highlight python %}
 # Playlist 1
 p1_name, p1_tracks = collect_tracks_query("old school reggae roots", "playlist")
 df1 = get_tracklist_features(p1_tracks)
@@ -57,7 +57,7 @@ df3 = get_tracklist_features(p3_tracks)
 print(f"Playlist analysis: {p3_name}, with {len(p3_tracks)} tracks")
 
 df3.head()
-```
+{% endhighlight %}
 
 </p>
 </details>
@@ -215,7 +215,7 @@ We want to have a good idea of what our corpus looks like. We will generate some
 <summary>See code</summary>
 <p>
 
-```python
+{% highlight python %}
 ### Vizualization
 # Now that we've loaded all the features in our playlist, we want to visually analyze the 
 # results. We define a list with all the features we want to look at, including the ranges
@@ -286,7 +286,7 @@ handles, labels = axs[0, 0].get_legend_handles_labels()
 fig.legend(handles, labels, loc='upper center')
 fig.tight_layout()
 plt.subplots_adjust(hspace = 0.3, top=0.97)
-```
+{% endhighlight %}
 </p>
 </details>
 
@@ -311,7 +311,7 @@ Here, negative values mean 'less' and positive values mean 'more' (negative valu
 <summary>See code</summary>
 <p>
 
-```python
+{% highlight python %}
 ### Significance
 
 # take the means and standard deviations, and make those values the columns so we can 
@@ -331,7 +331,7 @@ significance = pd.DataFrame({
 })
 
 significance
-```
+{% endhighlight %}
 
 </p>
 </details>
@@ -492,7 +492,7 @@ We will use euclidean distance
 <summary>See code</summary>
 <p>
 
-```python
+{% highlight python %}
 distance_features = [
     "danceability",
     "energy",
@@ -544,7 +544,7 @@ print(f"The least iconic dub track is: '{track}' by '{artist}'")
 track, artist = least_iconic_track(df3)
 print(f"The least iconic dubstep track is: '{track}' by '{artist}'")
 
-```
+{% endhighlight %}
 
 </p>
 </details>
