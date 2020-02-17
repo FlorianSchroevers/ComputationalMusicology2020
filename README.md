@@ -35,8 +35,7 @@ First we need get our corpus from the Spotify API. In a file called `helpers.py`
 First we need to do some imports, then we will load the track features of the  playlists and save them in pandas dataframes.
 
 <details>
-  <summary><b>Click here to see code snippet</b></summary>
-hello
+  <summary><b>Click here to see code snippet</b></summary> 
 
 ```python 
 ### imports
