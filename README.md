@@ -35,7 +35,8 @@ First we need get our corpus from the Spotify API. In a file called `helpers.py`
 First we need to do some imports, then we will load the track features of the  playlists and save them in pandas dataframes.
 
 <details>
-  <summary><b>Click here to see code snippet</b></summary> 
+  <summary><b>Click here to see code snippet</b></summary>
+  <p>
 
 ```python 
 ### imports
@@ -59,7 +60,8 @@ p3_name, p3_tracks = collect_tracks_query("deep medi musik", "playlist")
 df3 = get_tracklist_features(p3_tracks)
 print(f"Playlist analysis: {p3_name}, with {len(p3_tracks)} tracks")
 ```
-</details>
+
+</p></details>
 
     Playlist analysis: Old School Reggae Roots 70s/80s, with 299 tracks
     Playlist analysis: Heavy Dub Roots Reggae, with 835 tracks
