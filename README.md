@@ -34,48 +34,33 @@ First we need get our corpus from the Spotify API. In a file called `helpers.py`
 
 First we need to do some imports, then we will load the track features of the  playlists and save them in pandas dataframes.
 
-```python 
-### imports
-import matplotlib.pyplot as plt
-import seaborn as sns
-
-import helpers
-``` 
-
-
 <details>
-<summary><b>Click here to see code snippet</b></summary>
-<br>
-<p>
+  <summary><b>Click here to see code snippet</b></summary><p>
 
-```python 
-### imports
-import matplotlib.pyplot as plt
-import seaborn as sns
+  ```python 
+  ### imports
+  import matplotlib.pyplot as plt
+  import seaborn as sns
 
-import helpers
-``` 
+  import helpers
 
+  # Playlist 1
+  p1_name, p1_tracks = collect_tracks_query("old school reggae roots", "playlist")
+  df1 = get_tracklist_features(p1_tracks)
+  print(f"Playlist analysis: {p1_name}, with {len(p1_tracks)} tracks")
 
-```python
-# Playlist 1
-p1_name, p1_tracks = collect_tracks_query("old school reggae roots", "playlist")
-df1 = get_tracklist_features(p1_tracks)
-print(f"Playlist analysis: {p1_name}, with {len(p1_tracks)} tracks")
+  # Playlist 1
+  p2_name, p2_tracks = collect_tracks_query("heavy dub roots reggae", "playlist")
+  df2 = get_tracklist_features(p2_tracks)
+  print(f"Playlist analysis: {p2_name}, with {len(p2_tracks)} tracks")
 
-# Playlist 1
-p2_name, p2_tracks = collect_tracks_query("heavy dub roots reggae", "playlist")
-df2 = get_tracklist_features(p2_tracks)
-print(f"Playlist analysis: {p2_name}, with {len(p2_tracks)} tracks")
+  # Playlist 1
+  p3_name, p3_tracks = collect_tracks_query("deep medi musik", "playlist")
+  df3 = get_tracklist_features(p3_tracks)
+  print(f"Playlist analysis: {p3_name}, with {len(p3_tracks)} tracks")
+  ```
 
-# Playlist 1
-p3_name, p3_tracks = collect_tracks_query("deep medi musik", "playlist")
-df3 = get_tracklist_features(p3_tracks)
-print(f"Playlist analysis: {p3_name}, with {len(p3_tracks)} tracks")
-
-```
-
-</p>
+  </p>
 </details>
 
     Playlist analysis: Old School Reggae Roots 70s/80s, with 299 tracks
