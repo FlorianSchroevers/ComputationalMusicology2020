@@ -36,7 +36,7 @@ First we need to do some imports, then we will load the track features of the  p
 
 <details>
   <summary><b>Click here to see code snippet</b></summary>
-  <p>
+  <p markdown="1">
 
 ---
 some stuff
