@@ -46,7 +46,7 @@ import helpers
 <details>
 <summary><b>Click here to see code snippet</b></summary>
 <br>
-<p>
+<p markdown="1">
 
 ```python 
 ### imports
