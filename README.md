@@ -5,7 +5,7 @@
  - 11334266
  - Feb 2020
 
-Note: The code doesn't preview properly in this readme. See the main notebook in the repository or visit florianschroevers.github.io/ComputationalMusicology2020
+Note: The code doesn't preview properly in this readme. See the main notebook in the repository or visit [the github pages site](https://florianschroevers.github.io/ComputationalMusicology2020/)
 
 ## Corpus
 
@@ -396,7 +396,7 @@ sns.scatterplot(data=complete_df, x="pc1", y="pc2", hue="playlist",
 </p>
 </details>
 
-![png](figs/figures.png)
+![png](figs/clustering.png)
 
 
 ### Iconic tracks
