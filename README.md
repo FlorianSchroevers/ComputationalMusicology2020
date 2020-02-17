@@ -1,11 +1,7 @@
 
 # Evolution of Reggae into Dub into Dubstep
 
- - Florian Schroevers
- - 11334266
- - Feb 2020
-
-Note: The code doesn't preview properly in this readme. See the main notebook in the repository or visit [the github pages site](https://florianschroevers.github.io/ComputationalMusicology2020/)
+Author: Florian Schroevers (11334266)
 
 ## Corpus
 
@@ -155,7 +151,7 @@ plt.subplots_adjust(hspace = 0.3, top=0.97)
 
 From visual inspection, we can already draw some preliminary conclusions. We can see that our hypotheses had some meaning. 
 
-The acousticness does seem to decrease, with the mean going from 0.25 $\rightarrow$ 0.13 $\rightarrow$ 0.06. 
+The acousticness does seem to decrease, with the mean going from 0.25 -> 0.13 -> 0.06. 
 
 The intrumentalness also has a remarkable path. Reggae has a very low score (mean of 0.09), meaning it has a lot of vocals. Dub is significantly more instrumental with a mean score of 0.46, Dubstep is even more intrumental with a mean score of 0.65.
 
@@ -389,7 +385,7 @@ sns.scatterplot(data=complete_df, x="pc1", y="pc2", hue="playlist",
 
 </p></details>
 
-![png](figs/clustering.png)
+![png](figures/clustering.png)
 
 
 ### Iconic tracks
