@@ -38,6 +38,9 @@ First we need to do some imports, then we will load the track features of the  p
   <summary><b>Click here to see code snippet</b></summary>
   <p>
 
+---
+some stuff
+# some header
 
 ```python
 ### imports
