@@ -1,5 +1,9 @@
 
-# Week 6
+# Evolution of Reggae into Dub into Dubstep
+
+ - Florian Schroevers
+ - 11334266
+ - Feb 2020
 
 ## Corpus
 
@@ -24,7 +28,9 @@ We can also argue that the instrumentalness will increase. Reggae usually has vo
 TODO: MORE FEATURES
 
 ## Setting up
-First we need...
+First we need get our corpus from the Spotify API. In a file called `helpers.py`, we've defined some helper functions to load all this data in batches, to keep the amount of code in this notebook to a minimum. 
+
+First we need to do some imports, then we will load the track features of the  playlists and save them in pandas dataframes.
 
 <details>
 <summary>See code</summary>
@@ -33,10 +39,9 @@ First we need...
 {% highlight python %}
 ### imports
 import matplotlib.pyplot as plt
-from matplotlib import colors as mcolors
 import seaborn as sns
 
-from helpers import *
+import helpers
 {% endhighlight %}
 
 
@@ -56,7 +61,6 @@ p3_name, p3_tracks = collect_tracks_query("deep medi musik", "playlist")
 df3 = get_tracklist_features(p3_tracks)
 print(f"Playlist analysis: {p3_name}, with {len(p3_tracks)} tracks")
 
-df3.head()
 {% endhighlight %}
 
 </p>
@@ -65,147 +69,6 @@ df3.head()
     Playlist analysis: Old School Reggae Roots 70s/80s, with 299 tracks
     Playlist analysis: Heavy Dub Roots Reggae, with 835 tracks
     Playlist analysis: DEEP MEDi MUSIK & Tempa Records .. deep, with 617 tracks
-
-
-
-
-
-<div>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>danceability</th>
-      <th>energy</th>
-      <th>key</th>
-      <th>loudness</th>
-      <th>mode</th>
-      <th>speechiness</th>
-      <th>acousticness</th>
-      <th>instrumentalness</th>
-      <th>liveness</th>
-      <th>valence</th>
-      <th>tempo</th>
-      <th>type</th>
-      <th>id</th>
-      <th>uri</th>
-      <th>track_href</th>
-      <th>analysis_url</th>
-      <th>duration_ms</th>
-      <th>time_signature</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>0</td>
-      <td>0.748</td>
-      <td>0.721</td>
-      <td>0</td>
-      <td>-8.717</td>
-      <td>0</td>
-      <td>0.0538</td>
-      <td>0.002190</td>
-      <td>0.606</td>
-      <td>0.181</td>
-      <td>0.504</td>
-      <td>139.992</td>
-      <td>audio_features</td>
-      <td>26jDjZ9LXtiWlbDwRHwJD8</td>
-      <td>spotify:track:26jDjZ9LXtiWlbDwRHwJD8</td>
-      <td>https://api.spotify.com/v1/tracks/26jDjZ9LXtiW...</td>
-      <td>https://api.spotify.com/v1/audio-analysis/26jD...</td>
-      <td>294853</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td>0.759</td>
-      <td>0.472</td>
-      <td>11</td>
-      <td>-17.413</td>
-      <td>0</td>
-      <td>0.0660</td>
-      <td>0.091400</td>
-      <td>0.865</td>
-      <td>0.253</td>
-      <td>0.917</td>
-      <td>142.970</td>
-      <td>audio_features</td>
-      <td>1RtsJXVXDVvISNzrc0WohD</td>
-      <td>spotify:track:1RtsJXVXDVvISNzrc0WohD</td>
-      <td>https://api.spotify.com/v1/tracks/1RtsJXVXDVvI...</td>
-      <td>https://api.spotify.com/v1/audio-analysis/1Rts...</td>
-      <td>284453</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>0.927</td>
-      <td>0.289</td>
-      <td>0</td>
-      <td>-12.240</td>
-      <td>1</td>
-      <td>0.5530</td>
-      <td>0.366000</td>
-      <td>0.888</td>
-      <td>0.330</td>
-      <td>0.377</td>
-      <td>139.971</td>
-      <td>audio_features</td>
-      <td>4icnCijYoAPl1DevVpatAz</td>
-      <td>spotify:track:4icnCijYoAPl1DevVpatAz</td>
-      <td>https://api.spotify.com/v1/tracks/4icnCijYoAPl...</td>
-      <td>https://api.spotify.com/v1/audio-analysis/4icn...</td>
-      <td>249467</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>0.869</td>
-      <td>0.576</td>
-      <td>5</td>
-      <td>-10.527</td>
-      <td>0</td>
-      <td>0.1470</td>
-      <td>0.000836</td>
-      <td>0.685</td>
-      <td>0.411</td>
-      <td>0.257</td>
-      <td>147.014</td>
-      <td>audio_features</td>
-      <td>41GZiQAvgzSCXLhIWVJfMB</td>
-      <td>spotify:track:41GZiQAvgzSCXLhIWVJfMB</td>
-      <td>https://api.spotify.com/v1/tracks/41GZiQAvgzSC...</td>
-      <td>https://api.spotify.com/v1/audio-analysis/41GZ...</td>
-      <td>318587</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <td>4</td>
-      <td>0.696</td>
-      <td>0.734</td>
-      <td>7</td>
-      <td>-9.310</td>
-      <td>1</td>
-      <td>0.0533</td>
-      <td>0.032100</td>
-      <td>0.908</td>
-      <td>0.464</td>
-      <td>0.595</td>
-      <td>139.953</td>
-      <td>audio_features</td>
-      <td>5f7ZWdkpQ05topF1yGPBwB</td>
-      <td>spotify:track:5f7ZWdkpQ05topF1yGPBwB</td>
-      <td>https://api.spotify.com/v1/tracks/5f7ZWdkpQ05t...</td>
-      <td>https://api.spotify.com/v1/audio-analysis/5f7Z...</td>
-      <td>374880</td>
-      <td>4</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
 
 ## Visualization
 
@@ -482,6 +345,58 @@ Reggae is a lot less instrumental than dub (value of -1.70), and dub is a somewh
 
 TODO: MORE FEATURES
 
+### Clustering
+
+We want some way to actually see how these playlists are represented by the track features. If we see the feature vectors as points in 7-dimensional space, we can create a scatterplot showing all tracks. Of course we can't see 7 dimensions, so we need to perform some dimensionality redution. There is an array of methods to use. Based on some trial and error, the t-SNE method was chosen. (See clustering_viz.ipynb for an example of all the methods).
+
+<details>
+<summary>See code</summary>
+<p>
+
+{% highlight python %}
+
+from sklearn.manifold import *
+
+features = [
+    "danceability",
+    "energy",
+    "speechiness",
+    "acousticness",
+    "instrumentalness",
+    "liveness",
+    "valence"
+]
+
+df1["playlist"] = "reggae"
+df2["playlist"] = "dub"
+df3["playlist"] = "dubstep"
+complete_df = pd.concat([df1, df2, df3])
+
+tsne = TSNE(n_components=2, perplexity=80)
+principal_components = tsne.fit_transform(complete_df[features].values)
+principal_df = pd.DataFrame(data=principal_components, columns = ['pc1', 'pc2'])
+
+complete_df["pc1"] = principal_components[:, 0]
+complete_df["pc2"] = principal_components[:, 1]
+
+sns.set_style("white")
+sns.set(rc={
+    'figure.figsize': (13,13),
+    'axes.facecolor': 'darkgrey',
+    'figure.facecolor': 'white',
+    'axes.grid': False
+})
+sns.scatterplot(data=complete_df, x="pc1", y="pc2", hue="playlist", 
+                palette = ["#00992f", "#f7ee00", "#eb0000"])
+
+{% endhighlight %}
+
+</p>
+</details>
+
+![png](figs/figures.png)
+
+
 ### Iconic tracks
 
 Just for fun, we are also going to look at what the most typical/iconic tracks are according to each playlist. We'll do this by calculating some distance measure for each track to the 'golden standard' for that playlist, defined by the feature vector consisting of the means.
@@ -493,31 +408,22 @@ We will use euclidean distance
 <p>
 
 {% highlight python %}
-distance_features = [
-    "danceability",
-    "energy",
-    "speechiness",
-    "acousticness",
-    "instrumentalness",
-    "liveness",
-    "valence"
-]
 
 def most_iconic_track(df):
-    golden_standard = df[distance_features].mean()
+    golden_standard = df[features].mean()
 
     # euclidean distance:
-    df["distance"] = (df[distance_features] - golden_standard).pow(2).sum(axis=1).pow(0.5)
+    df["distance"] = (df[features] - golden_standard).pow(2).sum(axis=1).pow(0.5)
     closest_song_id = df[df['distance'] == df['distance'].min()]["id"].values[0]
 
     closest_track = sp.track(closest_song_id)
     return closest_track['name'], closest_track['artists'][0]['name']
 
 def least_iconic_track(df):
-    golden_standard = df[distance_features].mean()
+    golden_standard = df[features].mean()
 
     # euclidean distance:
-    df["distance"] = (df[distance_features] - golden_standard).pow(2).sum(axis=1).pow(0.5)
+    df["distance"] = (df[features] - golden_standard).pow(2).sum(axis=1).pow(0.5)
     furthest_song_id = df[df['distance'] == df['distance'].max()]["id"].values[0]
 
     furthest_track = sp.track(furthest_song_id)
