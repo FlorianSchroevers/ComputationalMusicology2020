@@ -38,16 +38,16 @@ First we need to do some imports, then we will load the track features of the  p
 <summary>See code</summary>
 <p>
 
-{% highlight python %}
+```python
 ### imports
 import matplotlib.pyplot as plt
 import seaborn as sns
 
 import helpers
-{% endhighlight %}
+```
 
 
-{% highlight python %}
+```python
 # Playlist 1
 p1_name, p1_tracks = collect_tracks_query("old school reggae roots", "playlist")
 df1 = get_tracklist_features(p1_tracks)
@@ -63,7 +63,7 @@ p3_name, p3_tracks = collect_tracks_query("deep medi musik", "playlist")
 df3 = get_tracklist_features(p3_tracks)
 print(f"Playlist analysis: {p3_name}, with {len(p3_tracks)} tracks")
 
-{% endhighlight %}
+```
 
 </p>
 </details>
@@ -80,7 +80,7 @@ We want to have a good idea of what our corpus looks like. We will generate some
 <summary>See code</summary>
 <p>
 
-{% highlight python %}
+```python
 ### Vizualization
 # Now that we've loaded all the features in our playlist, we want to visually analyze the 
 # results. We define a list with all the features we want to look at, including the ranges
@@ -151,7 +151,7 @@ handles, labels = axs[0, 0].get_legend_handles_labels()
 fig.legend(handles, labels, loc='upper center')
 fig.tight_layout()
 plt.subplots_adjust(hspace = 0.3, top=0.97)
-{% endhighlight %}
+```
 </p>
 </details>
 
@@ -176,7 +176,7 @@ Here, negative values mean 'less' and positive values mean 'more' (negative valu
 <summary>See code</summary>
 <p>
 
-{% highlight python %}
+```python
 ### Significance
 
 # take the means and standard deviations, and make those values the columns so we can 
@@ -196,7 +196,7 @@ significance = pd.DataFrame({
 })
 
 significance
-{% endhighlight %}
+```
 
 </p>
 </details>
@@ -355,7 +355,7 @@ We want some way to actually see how these playlists are represented by the trac
 <summary>See code</summary>
 <p>
 
-{% highlight python %}
+```python
 
 from sklearn.manifold import *
 
@@ -391,7 +391,7 @@ sns.set(rc={
 sns.scatterplot(data=complete_df, x="pc1", y="pc2", hue="playlist", 
                 palette = ["#00992f", "#f7ee00", "#eb0000"])
 
-{% endhighlight %}
+```
 
 </p>
 </details>
@@ -409,7 +409,7 @@ We will use euclidean distance
 <summary>See code</summary>
 <p>
 
-{% highlight python %}
+```python
 
 def most_iconic_track(df):
     golden_standard = df[features].mean()
@@ -452,7 +452,7 @@ print(f"The least iconic dub track is: '{track}' by '{artist}'")
 track, artist = least_iconic_track(df3)
 print(f"The least iconic dubstep track is: '{track}' by '{artist}'")
 
-{% endhighlight %}
+```
 
 </p>
 </details>
