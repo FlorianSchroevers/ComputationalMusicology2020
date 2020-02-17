@@ -1,2 +1,6 @@
 theme: jekyll-theme-cayman
 fenced_code_blocks: true
+no_fenced_code_blocks: false
+kramdown:
+  input: GFM
+  
