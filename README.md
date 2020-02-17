@@ -72,9 +72,9 @@ print(f"Playlist analysis: {p3_name}, with {len(p3_tracks)} tracks")
 We want to have a good idea of what our corpus looks like. We will generate some histograms of the three playlists for each feature. We will also plot the means for each playlist. This should give us not only an idea of how the features playlists are distributed, but also how the different playlists relate.
 
 <details>
-<summary><b>Click here to see code snippet</b></summary>
-<br>
-<p>
+  <summary><b>Click here to see code snippet</b></summary>
+  <p markdown="block">
+
 
 ```python
 ### Vizualization
@@ -148,8 +148,7 @@ fig.legend(handles, labels, loc='upper center')
 fig.tight_layout()
 plt.subplots_adjust(hspace = 0.3, top=0.97)
 ```
-</p>
-</details>
+</p></details>
 
 ![png](figures/histograms.png)
 
@@ -169,9 +168,8 @@ To verify our conclusions we have to look at some degree of statistical signific
 Here, negative values mean 'less' and positive values mean 'more' (negative value can mean: reggae is less danceable than dub).
 
 <details>
-<summary><b>Click here to see code snippet</b></summary>
-<br>
-<p>
+  <summary><b>Click here to see code snippet</b></summary>
+  <p markdown="block">
 
 ```python
 ### Significance
@@ -195,8 +193,7 @@ significance = pd.DataFrame({
 significance
 ```
 
-</p>
-</details>
+</p></details>
 
 
 <div>
@@ -349,9 +346,8 @@ TODO: MORE FEATURES
 We want some way to actually see how these playlists are represented by the track features. If we see the feature vectors as points in 7-dimensional space, we can create a scatterplot showing all tracks. Of course we can't see 7 dimensions, so we need to perform some dimensionality redution. There is an array of methods to use. Based on some trial and error, the t-SNE method was chosen. (See clustering_viz.ipynb for an example of all the methods).
 
 <details>
-<summary><b>Click here to see code snippet</b></summary>
-<br>
-<p>
+  <summary><b>Click here to see code snippet</b></summary>
+  <p markdown="block">
 
 ```python
 
@@ -391,8 +387,7 @@ sns.scatterplot(data=complete_df, x="pc1", y="pc2", hue="playlist",
 
 ```
 
-</p>
-</details>
+</p></details>
 
 ![png](figs/clustering.png)
 
@@ -404,9 +399,8 @@ Just for fun, we are also going to look at what the most typical/iconic tracks a
 We will use euclidean distance
 
 <details>
-<summary><b>Click here to see code snippet</b></summary>
-<br>
-<p>
+  <summary><b>Click here to see code snippet</b></summary>
+  <p markdown="block">
 
 ```python
 
@@ -453,8 +447,7 @@ print(f"The least iconic dubstep track is: '{track}' by '{artist}'")
 
 ```
 
-</p>
-</details>
+</p></details>
 
 
     The most iconic reggae track is: 'Long Shot Bus Me Bet' by 'The Pioneers'
