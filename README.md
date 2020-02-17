@@ -5,6 +5,8 @@
  - 11334266
  - Feb 2020
 
+Note: The code doesn't preview properly in this readme. See the main notebook in the repository or visit florianschroevers.github.io/ComputationalMusicology2020
+
 ## Corpus
 
 We are going to look at a set of three playlists. They are called:
