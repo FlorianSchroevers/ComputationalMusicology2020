@@ -83,31 +83,17 @@ df.head()
 ```
 
 </p></details>
-Playlist analysis: <a href="https://open.spotify.com/playlist/3RR3JllftMFHL4W0UwwuYG">Old School Reggae Roots 70s/80s</a>, with 378 tracks
-
-Playlist analysis: <a href="https://open.spotify.com/playlist/38KbybQIykgGa5IS9EfzpG">Heavy Dub Roots Reggae</a>, with 835 tracks
-
+Playlist analysis: <a href="https://open.spotify.com/playlist/3RR3JllftMFHL4W0UwwuYG">Old School Reggae Roots 70s/80s</a>, with 378 tracks<br>
+Playlist analysis: <a href="https://open.spotify.com/playlist/38KbybQIykgGa5IS9EfzpG">Heavy Dub Roots Reggae</a>, with 835 tracks<br>
 Playlist analysis: <a href="https://open.spotify.com/playlist/1NcfnV0Ks8nwOabcjErqRZ">DEEP MEDi MUSIK & Tempa Records .. deep</a>, with 617 tracks
-    A view of what the data looks like: 
+
+A view of what the data looks like: 
 
 
 
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -290,19 +276,16 @@ pd.set_option('mode.chained_assignment', 'warn')
 
 </p></details>
 Most iconic reggae track: <a href="https://open.spotify.com/track/3GRuCJ60jozCdIYrdbnu8K">Baba Boom Time - Original by The Jamaicans</a>
-
-Least iconic reggae track: <a href="https://open.spotify.com/track/4i15K683cnuoFJqdhvEK3E">Why Did You Leave by The Heptones</a>
+Least iconic reggae track: <a href="https://open.spotify.com/track/4i15K683cnuoFJqdhvEK3E">Why Did You Leave by The Heptones</a><br>
 
 
     
 Most iconic dub track: <a href="https://open.spotify.com/track/3C88onjSPfnDW2xgDGmKRg">Taxi to Baltimore Dub by Scientist</a>
-
-Least iconic dub track: <a href="https://open.spotify.com/track/1VVLIiLmW0j4jjuUP7i6Lr">Conquering Lion - Dub Plate Mix by Yabby You</a>
-
+Least iconic dub track: <a href="https://open.spotify.com/track/1VVLIiLmW0j4jjuUP7i6Lr">Conquering Lion - Dub Plate Mix by Yabby You</a><br>
 
 
-Most iconic dubstep track: <a href="https://open.spotify.com/track/53ztteLLPc0kNWXVDKQFFW">Wobble That Gut by Skream</a>
 
+Most iconic dubstep track: <a href="https://open.spotify.com/track/53ztteLLPc0kNWXVDKQFFW">Wobble That Gut by Skream</a><br>
 Least iconic dubstep track: <a href="https://open.spotify.com/track/4BJHlDxJvP9mudno9uklWX">A Song For Lenny by Skream</a>
     
     
