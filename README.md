@@ -80,10 +80,10 @@ df.head()
 
 </p></details>
 
-    Playlist analysis: <a href="https://open.spotify.com/playlist/3RR3JllftMFHL4W0UwwuYG">Old School Reggae Roots 70s/80s</a>, with 378 tracks
-    Playlist analysis: <a href="https://open.spotify.com/playlist/38KbybQIykgGa5IS9EfzpG">Heavy Dub Roots Reggae</a>, with 835 tracks
-    Playlist analysis: <a href="https://open.spotify.com/playlist/1NcfnV0Ks8nwOabcjErqRZ">DEEP MEDi MUSIK & Tempa Records .. deep</a>, with 617 tracks
-    A view of what the data looks like: 
+Playlist analysis: <a href="https://open.spotify.com/playlist/3RR3JllftMFHL4W0UwwuYG">Old School Reggae Roots 70s/80s</a>, with 378 tracks
+Playlist analysis: <a href="https://open.spotify.com/playlist/38KbybQIykgGa5IS9EfzpG">Heavy Dub Roots Reggae</a>, with 835 tracks
+Playlist analysis: <a href="https://open.spotify.com/playlist/1NcfnV0Ks8nwOabcjErqRZ">DEEP MEDi MUSIK & Tempa Records .. deep</a>, with 617 tracks
+A view of what the data looks like: 
 
 
 
@@ -286,16 +286,16 @@ pd.set_option('mode.chained_assignment', 'warn')
 
 </p></details>
 
-    <a href="https://open.spotify.com/track/3GRuCJ60jozCdIYrdbnu8K">Baba Boom Time - Original by The Jamaicans</a>
-    <a href="https://open.spotify.com/track/4i15K683cnuoFJqdhvEK3E">Why Did You Leave by The Heptones</a>
+<a href="https://open.spotify.com/track/3GRuCJ60jozCdIYrdbnu8K">Baba Boom Time - Original by The Jamaicans</a>
+<a href="https://open.spotify.com/track/4i15K683cnuoFJqdhvEK3E">Why Did You Leave by The Heptones</a>
     
     
-    <a href="https://open.spotify.com/track/3C88onjSPfnDW2xgDGmKRg">Taxi to Baltimore Dub by Scientist</a>
-    <a href="https://open.spotify.com/track/1VVLIiLmW0j4jjuUP7i6Lr">Conquering Lion - Dub Plate Mix by Yabby You</a>
+<a href="https://open.spotify.com/track/3C88onjSPfnDW2xgDGmKRg">Taxi to Baltimore Dub by Scientist</a>
+<a href="https://open.spotify.com/track/1VVLIiLmW0j4jjuUP7i6Lr">Conquering Lion - Dub Plate Mix by Yabby You</a>
     
     
-    <a href="https://open.spotify.com/track/53ztteLLPc0kNWXVDKQFFW">Wobble That Gut by Skream</a>
-    <a href="https://open.spotify.com/track/4BJHlDxJvP9mudno9uklWX">A Song For Lenny by Skream</a>
+<a href="https://open.spotify.com/track/53ztteLLPc0kNWXVDKQFFW">Wobble That Gut by Skream</a>
+<a href="https://open.spotify.com/track/4BJHlDxJvP9mudno9uklWX">A Song For Lenny by Skream</a>
     
     
 
