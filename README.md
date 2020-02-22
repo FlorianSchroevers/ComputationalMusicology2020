@@ -357,7 +357,6 @@ plt.subplots_adjust(hspace = 0.3, top=0.97)
 
 </p></details>
 
-
 ![png](figures/output_10_0.png)
 
 
@@ -380,6 +379,7 @@ df["component3"] = components[:, 2]
 ```
 
 ```python
+
 fig = px.scatter_3d(df.dropna(), x="component1", y="component2", z="component3", hover_name="name", color="playlist",
           color_discrete_sequence = ["#00992f", "#f7ee00", "#eb0000"], size_max=5, size=[1]*df.dropna().shape[0])
 
@@ -394,10 +394,6 @@ py.iplot(fig, filename="tsne-scatter")
 
 </p></details>
 
-
-
-
-
 <iframe
     width="850px"
     height="800px"
@@ -405,8 +401,6 @@ py.iplot(fig, filename="tsne-scatter")
     frameborder="0"
     allowfullscreen
 ></iframe>
-
-
 
 
 Now these are some very interesting results. Not only can we see that the spotify features are adequate to differentiate between the three genres. Though there is a lot of overlap, this is to be expected. Certainly dub anr reggae are overlapping a lot, and dub and dubstep also. This supports the theory that dub is the bridge between the two other genres. 
@@ -493,8 +487,6 @@ py.iplot(fig, filename="k-means-scatter")
 
 
 
-
-
 <iframe
     width="850px"
     height="800px"
@@ -536,7 +528,6 @@ plt.subplots_adjust(hspace = 0.3, top=0.96)
 
 </p></details>
 
-
 ![png](figures/output_17_0.png)
 
 
@@ -567,8 +558,6 @@ py.iplot(fig, filename="features-scatter")
 
 
 
-
-
 <iframe
     width="850px"
     height="800px"
@@ -581,3 +570,4 @@ py.iplot(fig, filename="features-scatter")
 
 
 These findings to conform to the hypothesis that dub is the bridge between reggae and dubstep, In the figure above we can clearly see reggae holds the top left corner and dubstep the bottom right.
+
