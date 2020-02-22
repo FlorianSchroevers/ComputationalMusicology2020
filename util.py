@@ -5,8 +5,6 @@ from credentials import *
 
 import pandas as pd
 
-from pprint import pprint
-
 # ## connecting to spotify API
 # We need to use the credentials of our Spotify account to connect to the API. We use a wrapper
 # called spotipy to do this. I've stored my credentials in a python file called 

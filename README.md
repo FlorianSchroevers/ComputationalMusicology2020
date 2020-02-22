@@ -12,7 +12,7 @@ These are all playlists of styles of music that are somhow connected. The theory
 
 Spotify has an API that will allow us to gather their analysis on all of their tracks. We will use this to create a dataset of features of all the tracks in our corpus
 
-Note: We are not talking about the 'brostep' genre, commonly referred to as dubstep. brostep artists include Skrillex and Datsik.
+Note: We are not talking about the 'brostep' genre, commonly referred to as dubstep. Brostep artists include Skrillex and Datsik.
 
 ## Hypotheses
 
@@ -53,8 +53,12 @@ from sklearn.manifold import TSNE
 import util
 ```
 
+
 ```python
 playlists = ["reggae", "dub", "dubstep"]
+# the colors of eacht plot are based on the flag of ethiopia (rastafari flag)
+# they will be used troughout this notebook to color the plots
+pl_colors = ["#00992f", "#f7ee00", "#eb0000"]
 
 p1_name, p1_tracks, p1_link = util.collect_tracks_query("old school reggae roots", "playlist")
 df1 = util.get_tracklist_features(p1_tracks)#.set_index("id")
@@ -71,7 +75,7 @@ df3 = util.get_tracklist_features(p3_tracks)#.set_index("id")
 df3["playlist"] = playlists[2]
 print(f"Playlist analysis: {util.wrap_spotify_link(p3_name, p3_link)}, with {len(p3_tracks)} tracks")
 
-df = pd.concat([df1, df2, df3]).drop(["uri", "track_href", "analysis_url", "type"], axis=1)
+df = pd.concat([df1, df2, df3]).drop(["uri", "track_href", "analysis_url", "type"], axis=1).dropna()
 del df1, df2, df3
 
 print("A view of what the data looks like: ")
@@ -79,11 +83,12 @@ df.head()
 ```
 
 </p></details>
-
 Playlist analysis: <a href="https://open.spotify.com/playlist/3RR3JllftMFHL4W0UwwuYG">Old School Reggae Roots 70s/80s</a>, with 378 tracks
+
 Playlist analysis: <a href="https://open.spotify.com/playlist/38KbybQIykgGa5IS9EfzpG">Heavy Dub Roots Reggae</a>, with 835 tracks
+
 Playlist analysis: <a href="https://open.spotify.com/playlist/1NcfnV0Ks8nwOabcjErqRZ">DEEP MEDi MUSIK & Tempa Records .. deep</a>, with 617 tracks
-A view of what the data looks like: 
+    A view of what the data looks like: 
 
 
 
@@ -251,7 +256,8 @@ features = [
     "valence"
 ]
 
-# we temporarily disable the setting on a copy warning, since that is what we want to do in this case
+# we temporarily disable the setting on a copy warning, 
+# since that is what we want to do in this case
 pd.set_option('mode.chained_assignment', None)
     
 def most_iconic_track(df):
@@ -259,44 +265,46 @@ def most_iconic_track(df):
 
     # euclidean distance:
     df["distance"] = (df[features] - golden_standard).pow(2).sum(axis=1).pow(0.5)
-    closest_song_id = df[df['distance'] == df['distance'].min()]["id"].values[0]
+    closest_track_id = df[df['distance'] == df['distance'].min()]["id"].values[0]
 
-    closest_track = util.sp.track(closest_song_id)
-    return closest_track
+    return util.sp.track(closest_track_id)
 
 def least_iconic_track(df):
     golden_standard = df[features].mean()
 
     # euclidean distance:
     df["distance"] = (df[features] - golden_standard).pow(2).sum(axis=1).pow(0.5)
-    furthest_song_id = df[df['distance'] == df['distance'].max()]["id"].values[0]
+    furthest_track_id = df[df['distance'] == df['distance'].max()]["id"].values[0]
 
-    furthest_track = util.sp.track(furthest_song_id)
-    return furthest_track
+    return util.sp.track(furthest_track_id)
 
 for pl in playlists:
     track = most_iconic_track(df[df["playlist"] == pl])
-    print(util.wrap_spotify_link_track(track))
+    print(f"Most iconic {pl} track: {util.wrap_spotify_link_track(track)}")
     track = least_iconic_track(df[df["playlist"] == pl])
-    print(util.wrap_spotify_link_track(track))
+    print(f"Least iconic {pl} track: {util.wrap_spotify_link_track(track)}")
     print('\n')
 
 pd.set_option('mode.chained_assignment', 'warn')
 ```
 
 </p></details>
-
 Most iconic reggae track: <a href="https://open.spotify.com/track/3GRuCJ60jozCdIYrdbnu8K">Baba Boom Time - Original by The Jamaicans</a>
+
 Least iconic reggae track: <a href="https://open.spotify.com/track/4i15K683cnuoFJqdhvEK3E">Why Did You Leave by The Heptones</a>
 
 
+    
 Most iconic dub track: <a href="https://open.spotify.com/track/3C88onjSPfnDW2xgDGmKRg">Taxi to Baltimore Dub by Scientist</a>
+
 Least iconic dub track: <a href="https://open.spotify.com/track/1VVLIiLmW0j4jjuUP7i6Lr">Conquering Lion - Dub Plate Mix by Yabby You</a>
 
 
-Most iconic dubstep track: <a href="https://open.spotify.com/track/53ztteLLPc0kNWXVDKQFFW">Wobble That Gut by Skream</a>
-Least iconic dubstep track: <a href="https://open.spotify.com/track/4BJHlDxJvP9mudno9uklWX">A Song For Lenny by Skream</a>
 
+Most iconic dubstep track: <a href="https://open.spotify.com/track/53ztteLLPc0kNWXVDKQFFW">Wobble That Gut by Skream</a>
+
+Least iconic dubstep track: <a href="https://open.spotify.com/track/4BJHlDxJvP9mudno9uklWX">A Song For Lenny by Skream</a>
+    
     
 
 
@@ -330,29 +338,20 @@ interesting_features = [
 ]
 
 ### Plots
-# we will generate 10 histograms, one for each interesting feature, each histogram holds
+# we will generate 8 histograms, one for each interesting feature, each histogram holds
 # the distributions of that feature of each playlist, seperated by different colors.
 
 sns.set(rc={'figure.figsize':(13,24)})
 fig, axs = plt.subplots(4, 2)
 
-df1 = df[df["playlist"] == "reggae"]
-df2 = df[df["playlist"] == "dub"]
-df3 = df[df["playlist"] == "dubstep"]
-
 for i in range(4):
     for j in range(2):
         ft = interesting_features[i + (4*j)]
-        
-        # the colors of eacht plot are based on the flag of ethiopia (rastafari flag)
-        sns.distplot(df1[ft], label=p1_name, ax=axs[i, j], color="#00992f", hist=False)
-        sns.distplot(df2[ft], label=p2_name, ax=axs[i, j], color="#f7ee00", hist=False)
-        sns.distplot(df3[ft], label=p3_name, ax=axs[i, j], color="#eb0000", hist=False)
-
-handles, labels = axs[0, 0].get_legend_handles_labels()
-fig.legend(handles, labels, loc='upper center')
+        for k, pl in enumerate(playlists):
+            sns.distplot(
+            df[df["playlist"] == pl][ft], label=pl, ax=axs[i, j], color=pl_colors[k], hist=False)
+            
 fig.tight_layout()
-plt.subplots_adjust(hspace = 0.3, top=0.97)
 ```
 
 </p></details>
@@ -378,29 +377,29 @@ df["component2"] = components[:, 1]
 df["component3"] = components[:, 2]
 ```
 
+
 ```python
-
-fig = px.scatter_3d(df.dropna(), x="component1", y="component2", z="component3", hover_name="name", color="playlist",
-          color_discrete_sequence = ["#00992f", "#f7ee00", "#eb0000"], size_max=5, size=[1]*df.dropna().shape[0])
-
-fig.update_layout(
-    autosize=False,
-    width=850,
-    height=800
-)
+fig = px.scatter_3d(df, x="component1", y="component2", z="component3", hover_name="name", 
+                    color="playlist", color_discrete_sequence=pl_colors, 
+                    size_max=5, size=[1]*df.shape[0])
 
 py.iplot(fig, filename="tsne-scatter")
 ```
 
 </p></details>
 
+
+
+
 <iframe
-    width="850px"
-    height="800px"
+    width="100%"
+    height="525px"
     src="https://plot.ly/~awuthme/1.embed"
     frameborder="0"
     allowfullscreen
 ></iframe>
+
+
 
 
 Now these are some very interesting results. Not only can we see that the spotify features are adequate to differentiate between the three genres. Though there is a lot of overlap, this is to be expected. Certainly dub anr reggae are overlapping a lot, and dub and dubstep also. This supports the theory that dub is the bridge between the two other genres. 
@@ -462,7 +461,7 @@ def k_means(points, n, iterations=5):
 
 
 
-points = df[["component1", "component2", "component3"]].dropna().values
+points = df[["component1", "component2", "component3"]].values
 clusters = k_means(points, 2, 5)
 
 cluster_array = np.zeros(shape=(sum([len(cluster) for cluster in clusters]), ), dtype=str)
@@ -471,14 +470,8 @@ cluster_array[clusters[1]] = '1'
 
 df["cluster"] = cluster_array
 
-fig = px.scatter_3d(df.dropna(), x="component1", y="component2", z="component3", hover_name="name", 
-                   color="cluster", size_max=5, size=[1]*df.dropna().shape[0])
-
-fig.update_layout(
-    autosize=False,
-    width=850,
-    height=800
-)
+fig = px.scatter_3d(df, x="component1", y="component2", z="component3", hover_name="name", 
+                   color="cluster", size_max=5, size=[1]*df.shape[0])
 
 py.iplot(fig, filename="k-means-scatter")
 ```
@@ -487,9 +480,10 @@ py.iplot(fig, filename="k-means-scatter")
 
 
 
+
 <iframe
-    width="850px"
-    height="800px"
+    width="100%"
+    height="525px"
     src="https://plot.ly/~awuthme/3.embed"
     frameborder="0"
     allowfullscreen
@@ -509,21 +503,15 @@ We have now seperated our dataset again, this time based on the clusters we foun
 sns.set(rc={'figure.figsize':(13,24)})
 fig, axs = plt.subplots(4, 2)
 
-df1 = df[df["cluster"] == "1"]
-df2 = df[df["cluster"] == "2"]
-
 for i in range(4):
     for j in range(2):
         ft = interesting_features[i + (4*j)]
         
-        # the colors of eacht plot are based on the flag of ethiopia (rastafari flag)
-        sns.distplot(df1[ft], label="1", ax=axs[i, j], hist=False)
-        sns.distplot(df2[ft], label="2", ax=axs[i, j], hist=False)
+        sns.distplot(df[df["cluster"] == "1"][ft], label="1", ax=axs[i, j], hist=False)
+        sns.distplot(df[df["cluster"] == "2"][ft], label="2", ax=axs[i, j], hist=False)
 
-handles, labels = axs[0, 0].get_legend_handles_labels()
-fig.legend(handles, labels, loc='upper center')
 fig.tight_layout()
-plt.subplots_adjust(hspace = 0.3, top=0.96)
+
 ```
 
 </p></details>
@@ -541,15 +529,9 @@ We can now check if just these features are enough to recreate a similair lookin
   <p markdown="block">
 
 ```python
-fig = px.scatter_3d(df.dropna(), x="instrumentalness", y="valence", z="acousticness", hover_name="name", 
-                    color="playlist",
-          color_discrete_sequence = ["#00992f", "#f7ee00", "#eb0000"], size_max=5, size=[1]*df.dropna().shape[0])
-
-fig.update_layout(
-    autosize=False,
-    width=850,
-    height=800
-)
+fig = px.scatter_3d(df, x="instrumentalness", y="valence", z="acousticness", hover_name="name", 
+                    color="playlist", color_discrete_sequence=pl_colors, 
+                    size_max=5, size=[1]*df.shape[0])
 
 py.iplot(fig, filename="features-scatter")
 ```
@@ -558,9 +540,10 @@ py.iplot(fig, filename="features-scatter")
 
 
 
+
 <iframe
-    width="850px"
-    height="800px"
+    width="100%"
+    height="525px"
     src="https://plot.ly/~awuthme/5.embed"
     frameborder="0"
     allowfullscreen
@@ -570,4 +553,3 @@ py.iplot(fig, filename="features-scatter")
 
 
 These findings to conform to the hypothesis that dub is the bridge between reggae and dubstep, In the figure above we can clearly see reggae holds the top left corner and dubstep the bottom right.
-
