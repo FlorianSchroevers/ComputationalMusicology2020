@@ -1,6 +1,7 @@
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials, SpotifyOauthError
-from spotipy_credentials import *
+import chart_studio
+from credentials import *
 
 import pandas as pd
 
@@ -9,7 +10,11 @@ from pprint import pprint
 # ## connecting to spotify API
 # We need to use the credentials of our Spotify account to connect to the API. We use a wrapper
 # called spotipy to do this. I've stored my credentials in a python file called 
-# `spotipy_credentials.py` (see import above). Edit that file so it contains your credentials.
+# `credentials.py` (see import above). Edit that file so it contains your credentials.
+try:
+    chart_studio.tools.set_credentials_file(username=CHART_STUDIO_USERNAME, api_key=CHART_STUDIO_API_KEY)
+except:
+    print("Chart studio credentials not found. Add them to `credentials.py` in this folder")
 
 try:
     client_credentials_manager = SpotifyClientCredentials(
@@ -18,7 +23,7 @@ try:
     )
     sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 except SpotifyOauthError:
-    print("Spotipy credentials not found. Add them to `spotipy_credentials.py` in this folder")
+    print("Spotipy credentials not found. Add them to `credentials.py` in this folder")
 
 
 def get_album_tracks(album):
@@ -53,17 +58,20 @@ def collect_tracks_query(query, t):
 
     if "albums" in search_result:
         name = search_result["albums"]["items"][0]["name"]
+        link = search_result["albums"]["items"][0]["external_urls"]["spotify"]
         tracks += get_album_tracks(search_result["albums"]["items"][0])
     elif "artists" in search_result:
         name = search_result["artists"]["items"][0]["name"]
+        link = search_result["artists"]["items"][0]["external_urls"]["spotify"]
         albums = sp.artist_albums(search_result["artists"]["items"][0]["id"])
         for album in albums["items"]:
             tracks += get_album_tracks(album)
     elif "playlists" in search_result:
         name = search_result["playlists"]["items"][0]["name"]
+        link = search_result["playlists"]["items"][0]["external_urls"]["spotify"]
         tracks += get_playlist_tracks(search_result["playlists"]["items"][0])
     
-    return name, tracks
+    return name, tracks, link
 
 def collect_tracks_id(item_id, t):
     tracks = []
@@ -107,4 +115,11 @@ def get_tracklist_features(tracks, source=""):
     features += sp.audio_features(track_ids[offset:])
     return pd.DataFrame(features)
 
-
+def wrap_spotify_link_track(track):
+    tname = track['name']
+    artist = track['artists'][0]['name']
+    link = track["external_urls"]["spotify"]
+    return f'<a href="{link}">{tname} by {artist}</a>'
+                               
+def wrap_spotify_link(name, link):
+    return f'<a href="{link}">{name}</a>'
