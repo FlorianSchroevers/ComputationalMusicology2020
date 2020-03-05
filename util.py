@@ -4,6 +4,7 @@ import chart_studio
 from credentials import *
 
 import pandas as pd
+import numpy as np
 
 # ## connecting to spotify API
 # We need to use the credentials of our Spotify account to connect to the API. We use a wrapper
@@ -118,6 +119,73 @@ def wrap_spotify_link_track(track):
     artist = track['artists'][0]['name']
     link = track["external_urls"]["spotify"]
     return f'<a href="{link}">{tname} by {artist}</a>'
-                               
+
 def wrap_spotify_link(name, link):
     return f'<a href="{link}">{name}</a>'
+
+
+# +
+def get_segment_interval_feature_matrix(segments, start_time, stop_time, 
+                                        feature="pitches", scale_width=False):
+    features_array = np.zeros(shape=(1, 12))
+    
+    width = 1
+    n = 0
+    s = segments[0]
+    while s["start"] < stop_time:
+        if s["start"] > start_time:
+            if scale_width:
+                width = int(10/s["duration"])
+            new_features = np.array([s[feature]] * width)
+            features_array = np.concatenate([features_array, new_features])
+
+        n += 1
+        s = segments[n]
+    
+    return features_array[1:].T
+
+
+def get_feature_matrix(track_id, feature="pitches", start_bar=0, 
+                       n_bars=None, scale_width=False, resolution="segments"):
+    analysis = sp.audio_analysis(track_id)
+    segments = analysis["segments"]
+    bars = analysis["bars"]
+
+    start_time = bars[start_bar]["start"]
+    
+    if n_bars == None:
+        n_bars = len(bars) - start_bar - 1
+    stop_time = bars[start_bar + n_bars]["start"]
+    
+    if resolution == "segments":
+        features_array = get_segment_interval_feature_matrix(
+            segments, 
+            start_time, 
+            stop_time,
+            feature=feature,
+            scale_width=scale_width
+        )
+    elif resolution == "beats":
+        beats = analysis["beats"]
+        features_array = np.zeros(shape=(1, 12))
+        
+        n = 0
+        b = beats[0]
+        while b["start"] < stop_time:
+            if b["start"] > start_time:
+                beat_mean_feature = np.array([get_segment_interval_feature_matrix(
+                    segments,
+                    b["start"],
+                    b["start"] + b["duration"],
+                    feature=feature,
+                ).mean(axis=1)])
+                features_array = np.concatenate([features_array, beat_mean_feature])
+            n += 1
+            b = beats[n]
+            
+        features_array = features_array[1:].T
+    
+    return features_array
+# -
+
+
