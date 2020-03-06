@@ -145,7 +145,7 @@ def get_segment_interval_feature_matrix(segments, start_time, stop_time,
     return features_array[1:].T
 
 
-def get_feature_matrix(track_id, feature="pitches", start_bar=0, 
+def get_feature_matrix(track_id, feature="pitches", start_bar=0, print_time=False,
                        n_bars=None, scale_width=False, resolution="segments"):
     analysis = sp.audio_analysis(track_id)
     segments = analysis["segments"]
@@ -156,6 +156,9 @@ def get_feature_matrix(track_id, feature="pitches", start_bar=0,
     if n_bars == None:
         n_bars = len(bars) - start_bar - 1
     stop_time = bars[start_bar + n_bars]["start"]
+    
+    if print_time:
+        print(f"{start_time:.1f} - {stop_time:.1f}")
     
     if resolution == "segments":
         features_array = get_segment_interval_feature_matrix(
@@ -172,7 +175,7 @@ def get_feature_matrix(track_id, feature="pitches", start_bar=0,
         n = 0
         b = beats[0]
         while b["start"] < stop_time:
-            if b["start"] > start_time:
+            if b["start"] >= start_time:
                 beat_mean_feature = np.array([get_segment_interval_feature_matrix(
                     segments,
                     b["start"],
