@@ -41,7 +41,7 @@ def get_album_tracks(album):
 def get_playlist_tracks(playlist):
     tracks = []
     batch_size = 100
-    
+    piano chords
     offset = 0
     while True:
         new_tracks = sp.playlist_tracks(playlist["id"], limit=batch_size, offset=offset)["items"]
@@ -181,6 +181,7 @@ def get_feature_matrix(track_id, feature="pitches", start_bar=0, print_time=Fals
                     b["start"],
                     b["start"] + b["duration"],
                     feature=feature,
+                    scale_width=True
                 ).mean(axis=1)])
                 features_array = np.concatenate([features_array, beat_mean_feature])
             n += 1
