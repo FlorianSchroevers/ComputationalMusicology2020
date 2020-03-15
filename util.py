@@ -41,7 +41,7 @@ def get_album_tracks(album):
 def get_playlist_tracks(playlist):
     tracks = []
     batch_size = 100
-    piano chords
+#     piano chords
     offset = 0
     while True:
         new_tracks = sp.playlist_tracks(playlist["id"], limit=batch_size, offset=offset)["items"]
